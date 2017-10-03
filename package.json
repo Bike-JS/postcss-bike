@@ -1,13 +1,26 @@
 {
   "name": "postcss-bike",
   "version": "1.0.0",
-  "description": "PostCSS Plugin",
+  "description": "PostCSS plugin for transform custom At-rules to BEM",
   "main": "lib",
   "scripts": {
     "test": "gulp"
   },
-  "author": "Artem Tolstykh <arttolstykh@lookamore.com>",
+  "author": "Artem Tolstykh <arttolstykh@gmail.com>",
+  "contributors": [
+    {
+      "name": "Artem Tolstykh",
+      "email": "arttolstykh@gmail.com"
+    },
+    {
+      "name": "Alex Khyrenko",
+      "email": "alex.hyrenko@gmail.com"
+    }
+  ],
   "license": "MIT",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "postcss": "^6.0.12"
   },
@@ -23,7 +36,14 @@
     "path": "^0.12.7",
     "run-sequence": "^2.2.0"
   },
-  "engines": {
-    "node": ">=4.0.0"
-  }
+  "keywords": [
+    "bem",
+    "bike",
+    "postcss",
+    "css"
+  ],
+  "bugs": {
+    "url": "https://github.com/artem-tolstykh/postcss-bike/issues"
+  },
+  "homepage": "https://github.com/artem-tolstykh/postcss-bike#readme"
 }
