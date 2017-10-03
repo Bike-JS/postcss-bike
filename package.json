@@ -1,0 +1,29 @@
+{
+  "name": "postcss-bike",
+  "version": "1.0.0",
+  "description": "PostCSS Plugin",
+  "main": "lib",
+  "scripts": {
+    "test": "gulp"
+  },
+  "author": "Artem Tolstykh <arttolstykh@lookamore.com>",
+  "license": "MIT",
+  "dependencies": {
+    "postcss": "^6.0.12"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-ava": "^0.18.0",
+    "gulp-babel": "^7.0.0",
+    "path": "^0.12.7",
+    "run-sequence": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
