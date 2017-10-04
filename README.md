@@ -1,2 +1,2 @@
 # postcss-bike
-PostCSS plugin for transform custom At-rules to BEM
+PostCSS plugin for transformation of custom At-rules to BEM-rules
