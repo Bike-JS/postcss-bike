@@ -33,6 +33,7 @@
     "gulp": "^3.9.1",
     "gulp-ava": "^0.18.0",
     "gulp-babel": "^7.0.0",
+    "gulp-postcss": "^7.0.0",
     "path": "^0.12.7",
     "run-sequence": "^2.2.0"
   },

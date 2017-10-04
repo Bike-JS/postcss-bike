@@ -6,47 +6,59 @@ export default postcss.plugin('postcss-bike', function postcssBike(options) {
 
     options = options || {};
 
-    const selector = (block, elem, modName, modVal) => (
-      `.${block}${elem ? `__${elem}` : ''}${modName ? (modVal ? `_${modName}_${modVal}` : `_${modName}`) : ''}`
-    );
-
-    const addMod = (className, block, elem, modName, modVal) => (
-      `${className} ${selector(block, elem, modName, modVal).substr(1)}`
-    );
-
-    const process = (rule) => {
-      if (rule.params === undefined) {
-        return rule;
+    const setSelector = (node) => {
+      if (node.name === 'component') {
+        return `.${node.params}`;
       }
 
-      if (!rule.nodes.length) {
-        return rule;
+      if (node.name === 'elem') {
+        return `${node.parent.selector}__${node.params}`;
       }
 
-      rule.raws.semicolon = true;
-      rule.type = 'rule';
+      if (node.name === 'mod') {
+        let modVal = node.params.match(/(\w+)\[(\w+)\]/);
 
-      if (rule.name === 'component') {
-        rule.selector = selector(rule.params);
-      }
-
-      if (rule.name === 'mod') {
-        let modVal = rule.params.match(/(\w+)\[(\w+)\]/);
+        if (!modVal) {
+          return `${node.parent.selector}_${node.params}`;
+        }
 
         if (modVal) {
-          if (rule.selector) {
-            rule.selector = addMod(rule.selector, rule.parent.params, modVal[1], modVal[2]);
-          } else {
-            rule.selector = selector(rule.parent.params, modVal[1], modVal[2]);
-          }
-        } else {
-          rule.selector = selector(rule.parent.params, '', rule.params);
+          return `${node.parent.selector}_${modVal[1]}_${modVal[2]}`;
         }
       }
+    }
 
-      if (rule.name === 'elem') {
-        rule.selector = selector(rule.parent.params, rule.params);
+    const process = (node) => {
+      if (node.params === undefined) {
+        return node;
       }
+
+      if (!node.nodes.length) {
+        return node;
+      }
+
+      const rule = postcss.rule({
+        raws: { semicolon: true },
+        selector: setSelector(node),
+        source: node.source
+      })
+
+      node.each(child => {
+        if (child.type === 'decl') {
+          let decl = postcss.decl({
+            raws: { before: '\n  ', between: ': '},
+            source: child.source,
+            prop: child.prop,
+            value: child.value
+          });
+
+         child.replaceWith(decl)
+        }
+      })
+
+      rule.append(node.nodes);
+
+      node.remove();
 
       root.append(rule);
 
