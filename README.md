@@ -1,5 +1,7 @@
 # Bike plugin
 
+[![Build](https://travis-ci.org/artem-tolstykh/postcss-bike.svg?branch=master)](https://travis-ci.org/artem-tolstykh/postcss-bike)
+
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.svg">
@@ -11,6 +13,7 @@ This [PostCSS] plugin based on the idea of [postthtml-bike] by [Alex Khyrenko] a
 [Alex Khyrenko]: https://github.com/Satanpit
 
 ## Install
+
 ```
 npm install --save-dev postcss-bike
 ```
@@ -91,4 +94,5 @@ Transformed to:
   color: #fff;
 }
 ```
+
 ### License [MIT](LICENSE)
