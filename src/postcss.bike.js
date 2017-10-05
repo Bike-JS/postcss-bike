@@ -47,8 +47,6 @@ export default postcss.plugin('postcss-bike', function postcssBike(options) {
         source: node.source
       })
 
-      rule.raws.semicolon = true;
-
       node.walkDecls(decl => {
         const declClone = postcss.decl({
           raws: { before: '\n  ', between: ': '},
