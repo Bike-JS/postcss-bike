@@ -38,22 +38,26 @@ export default postcss.plugin('postcss-bike', function postcssBike(options) {
       }
 
       const rule = postcss.rule({
-        raws: { semicolon: true },
+        raws: {
+          before: node.raws.before,
+          between: node.raws.between,
+          semicolon: true
+        },
         selector: setSelector(node),
         source: node.source
       })
 
-      node.each(child => {
-        if (child.type === 'decl') {
-          let decl = postcss.decl({
-            raws: { before: '\n  ', between: ': '},
-            source: child.source,
-            prop: child.prop,
-            value: child.value
-          });
+      rule.raws.semicolon = true;
 
-         child.replaceWith(decl)
-        }
+      node.walkDecls(decl => {
+        const declClone = postcss.decl({
+          raws: { before: '\n  ', between: ': '},
+          source: decl.source,
+          prop: decl.prop,
+          value: decl.value
+        })
+
+        decl.replaceWith(declClone)
       })
 
       rule.append(node.nodes);
@@ -72,6 +76,7 @@ export default postcss.plugin('postcss-bike', function postcssBike(options) {
         }
       });
     }
+
     root.walkAtRules('component', process);
   }
 });
