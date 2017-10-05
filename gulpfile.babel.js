@@ -2,14 +2,14 @@ import gulp from 'gulp';
 
 gulp.task('clean', () => {
   const del = require('del');
-  return del(['./lib/*.js']);
+  return del(['dist/*.js']);
 });
 
 gulp.task('compile', () => {
   const babel = require('gulp-babel');
-  return gulp.src('./src/*.js')
+  return gulp.src('lib/*.js')
     .pipe(babel())
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('test', () => {

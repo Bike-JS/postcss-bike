@@ -1,8 +1,11 @@
 {
   "name": "postcss-bike",
   "version": "1.0.0",
-  "description": "PostCSS plugin for transform custom At-rules to BEM",
-  "main": "lib",
+  "description": "PostCSS plugin for transformation of custom At-rules to BEM-like rules",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "gulp"
   },
@@ -37,10 +40,15 @@
     "path": "^0.12.7",
     "run-sequence": "^2.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artem-tolstykh/postcss-bike.git"
+  },
   "keywords": [
     "bem",
     "bike",
     "postcss",
+    "postcss-plugin",
     "css"
   ],
   "bugs": {

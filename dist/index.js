@@ -46,11 +46,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
       }
 
       var rule = _postcss2.default.rule({
-        raws: {
-          before: node.raws.before,
-          between: node.raws.between,
-          semicolon: true
-        },
+        raws: { semicolon: true },
         selector: setSelector(node),
         source: node.source
       });
