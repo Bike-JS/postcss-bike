@@ -1,6 +1,4 @@
-# Bike plugin
-
-[![Build](https://travis-ci.org/artem-tolstykh/postcss-bike.svg?branch=master)](https://travis-ci.org/artem-tolstykh/postcss-bike)
+# Bike plugin [![Build](https://travis-ci.org/artem-tolstykh/postcss-bike.svg?branch=master)](https://travis-ci.org/artem-tolstykh/postcss-bike)
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
