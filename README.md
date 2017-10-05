@@ -1,12 +1,10 @@
 # Bike plugin
 
-[![Build](https://travis-ci.org/Satanpit/posthtml-bike.svg?branch=master)](https://travis-ci.org/Satanpit/posthtml-bike)
-
-This [PostCSS] plugin based on the idea of [postthtml-bike] by [Alex Khyrenko] and implements transformation of custom At-rules to BEM-like rules
-
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.svg">
+
+This [PostCSS] plugin based on the idea of [postthtml-bike] by [Alex Khyrenko] and implements transformation of custom At-rules to BEM-like rules
 
 [PostCSS]: https://github.com/postcss/postcss
 [postthtml-bike]: https://github.com/Satanpit/posthtml-bike
