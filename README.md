@@ -4,10 +4,10 @@
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.svg">
 
-This [PostCSS] plugin based on the idea of [postthtml-bike] by [Alex Khyrenko] and implements transformation of custom At-rules to BEM-like rules
+This [PostCSS] plugin based on the idea of [posthtml-bike] by [Alex Khyrenko] and implements transformation of custom At-rules to BEM-like rules
 
 [PostCSS]: https://github.com/postcss/postcss
-[postthtml-bike]: https://github.com/Satanpit/posthtml-bike
+[posthtml-bike]: https://github.com/Satanpit/posthtml-bike
 [Alex Khyrenko]: https://github.com/Satanpit
 
 ## Install
