@@ -8,12 +8,9 @@ var _postcss2 = _interopRequireDefault(_postcss);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(options) {
+exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike() {
 
   return function (root) {
-
-    options = options || {};
-
     var setSelector = function setSelector(node) {
       if (node.name === 'component') {
         return '.' + node.params;
