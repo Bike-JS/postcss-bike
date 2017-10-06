@@ -12,10 +12,6 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
 
   return function (root) {
     var setSelector = function setSelector(node) {
-      if (node.name === 'component') {
-        return '.' + node.params;
-      }
-
       if (node.name === 'elem') {
         return node.parent.selector + '__' + node.params;
       }
@@ -27,10 +23,10 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
           return node.parent.selector + '_' + node.params;
         }
 
-        if (modVal) {
-          return node.parent.selector + '_' + modVal[1] + '_' + modVal[2];
-        }
+        return node.parent.selector + '_' + modVal[1] + '_' + modVal[2];
       }
+
+      return '.' + node.params;
     };
 
     var process = function process(node) {
