@@ -1,5 +1,5 @@
 const test = require('ava');
-const plugin = require('.././dist/index');
+const postcssBike = require('.././dist/index');
 const {readFileSync} = require('fs');
 const path = require('path');
 const postcss = require('postcss');
@@ -29,7 +29,7 @@ function compare (t, name) {
   const css = readFileSync(path.join(fixtures, `${name}.css`), 'utf8');
   const expected = readFileSync(path.join(fixtures, `${name}.expected.css`), 'utf8');
 
-  return postcss([plugin()])
+  return postcss([postcssBike()])
     .process(css)
     .then((res) => t.truthy(res.css === expected));
 }
