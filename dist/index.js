@@ -13,17 +13,35 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
   return function (root) {
     var setSelector = function setSelector(node) {
       if (node.name === 'elem') {
+        var isComponentMod = node.parent.selector.match(/^\.(\w+)\_(\w+)$/);
+        var isComponentModVal = node.parent.selector.match(/^\.(\w+)\_(\w+)\_(\w+)$/);
+        var isElemMod = node.parent.selector.match(/^\.(\w+)\_\_(\w+)\_(\w+)$/);
+        var isElemModVal = node.parent.selector.match(/^\.(\w+)\_\_(\w+)\_(\w+)\_(\w+)$/);
+
+        if (isComponentMod || isComponentModVal || isElemMod || isElemModVal) {
+
+          var list = [];
+
+          _postcss2.default.list.comma(node.params).forEach(function (elem) {
+            list.push('\n' + ('' + node.parent.selector) + ' ' + (node.parent.selector.split('_')[0] + '__' + elem));
+          });
+
+          list[0] = list[0].substr(1);
+
+          return list;
+        }
+
         return node.parent.selector + '__' + node.params;
       }
 
       if (node.name === 'mod') {
-        var modVal = node.params.match(/(\w+)\[(\w+)\]/);
+        var isModVal = node.params.match(/(\w+)\[(\w+)\]/);
 
-        if (!modVal) {
+        if (!isModVal) {
           return node.parent.selector + '_' + node.params;
         }
 
-        return node.parent.selector + '_' + modVal[1] + '_' + modVal[2];
+        return node.parent.selector + '_' + isModVal[1] + '_' + isModVal[2];
       }
 
       return '.' + node.params;
