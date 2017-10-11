@@ -1,4 +1,5 @@
-# Bike plugin [![Build Status][travis-image]][travis-url] [![NPM][npm]][npm-url]
+# Bike plugin 
+[![Build Status][travis-image]][travis-url] [![NPM][npm]][npm-url]
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
