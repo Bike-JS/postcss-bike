@@ -115,24 +115,28 @@ Transformed to:
 
 type: `String`  
 default: `{component: 'component'}`
+
 Allows to set custom name for component `@rule`.
 
 ### `element`
 
 type: `String`  
 default: `{element: 'elem'}`
+
 Allows to set custom name for element `@rule`.
 
 ### `modifier`
 
 type: `String`  
 default: `{modifier: 'mod'}`
+
 Allows to set custom name for modifier `@rule`.
 
 ### `modifierRegExp`
 
 type: `RegExp`  
 default: `{modifierRegExp: /(\w+)\[(\w+)\]/}`
+
 Allows to set custom regular expressions for modifier params. Where `$1` is Modifier Name and `$2` is Modifier Value. For 
 changing Modifier Value Separator, change default separator `\[$2\]`, which goes before and after $2 (only this `[ ]` symbols).
 
