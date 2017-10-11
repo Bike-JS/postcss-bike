@@ -1,6 +1,6 @@
 {
   "name": "postcss-bike",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PostCSS plugin for transformation of custom At-rules to BEM-like rules",
   "main": "dist/index.js",
   "directories": {
