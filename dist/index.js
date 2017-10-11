@@ -23,7 +23,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
           var list = [];
 
           _postcss2.default.list.comma(node.metadata.name).forEach(function (elem) {
-            list.push('\n' + ('' + node.parent.selector) + ' ' + (node.parent.selector.split('_')[0] + '__' + elem));
+            list.push('\n' + ('' + node.parent.selector) + ' ' + ('.' + node.metadata.component + '__' + elem));
           });
 
           list[0] = list[0].substr(1);
@@ -31,20 +31,23 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
           return list;
         }
 
-        return '.' + node.parent.metadata.name + '__' + node.metadata.name;
+        return '.' + node.metadata.component + '__' + node.metadata.name;
       }
 
       if (node.metadata.type === modifier) {
-        var isModVal = node.metadata.name.match(/(\w+)\[(\w+)\]/);
+        var isModVal = node.params.match(/(\w+)\[(\w+)\]/);
 
         if (!isModVal) {
           return node.parent.selector + '_' + node.metadata.name;
         }
 
-        return node.parent.selector + '_' + isModVal[1] + '_' + isModVal[2];
+        node.metadata.name = isModVal[1];
+        node.metadata.value = isModVal[2];
+
+        return node.parent.selector + '_' + node.metadata.name + '_' + node.metadata.value;
       }
 
-      return '.' + node.metadata.name;
+      return '.' + node.metadata.component;
     };
 
     var process = function process(node) {
@@ -52,10 +55,9 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
         return node;
       }
 
-      node.metadata = {
-        type: node.name,
-        name: node.params
-      };
+      if (node.name === component) {
+        node.metadata = { component: node.params };
+      }
 
       var rule = _postcss2.default.rule({
         raws: { semicolon: true },
@@ -83,10 +85,22 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
 
       rule.each(function (child) {
         if (child.type === 'atrule' && child.name === modifier) {
+          child.metadata = {
+            component: rule.metadata.component,
+            type: child.name,
+            name: child.params
+          };
+
           return process(child);
         }
 
         if (child.type === 'atrule' && child.name === element) {
+          child.metadata = {
+            component: rule.metadata.component,
+            type: child.name,
+            name: child.params
+          };
+
           return process(child);
         }
       });
