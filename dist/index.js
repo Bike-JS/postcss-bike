@@ -14,7 +14,7 @@ var DEFAULT_OPTIONS = {
   component: 'component',
   element: 'elem',
   modifier: 'mod',
-  modValSeparator: /(\w+)\[(\w+)\]/
+  modifierRegExp: /(\w+)\[(\w+)\]/
 };
 
 exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike() {
@@ -30,7 +30,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
           var list = [];
 
           _postcss2.default.list.comma(node.metadata.name).forEach(function (elem) {
-            list.push('\n' + ('' + node.parent.selector) + ' ' + ('.' + node.metadata.component + '__' + elem));
+            list.push('\n' + (node.parent.selector + ' .' + node.metadata.component + '__' + elem));
           });
 
           list[0] = list[0].substr(1);
@@ -42,7 +42,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
       }
 
       if (node.metadata.type === options.modifier) {
-        var isModVal = node.params.match(options.modValSeparator);
+        var isModVal = node.params.match(options.modifierRegExp);
 
         if (!isModVal) {
           return node.parent.selector + '_' + node.metadata.name;

@@ -9,3 +9,8 @@
   background-color: #333;
   color: #f5f5f5;
 }
+.example_theme_dark .example__header,
+.example_theme_dark .example__footer {
+  background-color: #1b1b1b;
+  color: #fff;
+}

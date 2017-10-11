@@ -21,15 +21,19 @@ test('element-modifier', (t) => {
   return compare(t, 'element-modifier');
 })
 
-test('basic', (t) => {
-  return compare(t, 'basic');
+test('modifier-elements', (t) => {
+  return compare(t, 'modifier-elements');
 })
 
-function compare (t, name) {
+test('options', (t) => {
+  return compare(t, 'options', { component: 'b', element: 'e', modifier: 'm', modifierRegExp: /(\w+)\((\w+)\)/});
+})
+
+function compare (t, name, options) {
   const css = readFileSync(path.join(fixtures, `${name}.css`), 'utf8');
   const expected = readFileSync(path.join(fixtures, `${name}.expected.css`), 'utf8');
 
-  return postcss([postcssBike()])
+  return postcss([postcssBike(options)])
     .process(css)
     .then((res) => t.truthy(res.css === expected));
 }
