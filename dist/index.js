@@ -2,24 +2,31 @@
 
 exports.__esModule = true;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _postcss = require('postcss');
 
 var _postcss2 = _interopRequireDefault(_postcss);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(options) {
+var DEFAULT_OPTIONS = {
+  component: 'component',
+  element: 'elem',
+  modifier: 'mod',
+  modValSeparator: /(\w+)\[(\w+)\]/
+};
 
-  options = options || {};
+exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_OPTIONS;
 
-  var component = options.component || 'component';
-  var element = options.element || 'elem';
-  var modifier = options.modifier || 'mod';
+
+  options = _extends({}, DEFAULT_OPTIONS, options);
 
   return function (root) {
     var selector = function selector(node) {
-      if (node.metadata.type === element) {
-        if (node.parent.metadata.type === modifier) {
+      if (node.metadata.type === options.element) {
+        if (node.parent.metadata.type === options.modifier) {
           var list = [];
 
           _postcss2.default.list.comma(node.metadata.name).forEach(function (elem) {
@@ -34,8 +41,8 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
         return '.' + node.metadata.component + '__' + node.metadata.name;
       }
 
-      if (node.metadata.type === modifier) {
-        var isModVal = node.params.match(/(\w+)\[(\w+)\]/);
+      if (node.metadata.type === options.modifier) {
+        var isModVal = node.params.match(options.modValSeparator);
 
         if (!isModVal) {
           return node.parent.selector + '_' + node.metadata.name;
@@ -55,7 +62,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
         return node;
       }
 
-      if (node.name === component) {
+      if (node.name === options.component) {
         node.metadata = { component: node.params };
       }
 
@@ -84,7 +91,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
       root.append(rule);
 
       rule.each(function (child) {
-        if (child.type === 'atrule' && child.name === modifier) {
+        if (child.type === 'atrule' && child.name === options.modifier) {
           child.metadata = {
             component: rule.metadata.component,
             type: child.name,
@@ -94,7 +101,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
           return process(child);
         }
 
-        if (child.type === 'atrule' && child.name === element) {
+        if (child.type === 'atrule' && child.name === options.element) {
           child.metadata = {
             component: rule.metadata.component,
             type: child.name,
@@ -106,7 +113,7 @@ exports.default = _postcss2.default.plugin('postcss-bike', function postcssBike(
       });
     };
 
-    root.walkAtRules(component, process);
+    root.walkAtRules(options.component, process);
   };
 });
 module.exports = exports['default'];

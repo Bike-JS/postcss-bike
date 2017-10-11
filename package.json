@@ -31,14 +31,12 @@
     "ava": "^0.22.0",
     "babel-core": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "del": "^3.0.0",
-    "eslint": "^4.8.0",
-    "eslint-plugin-ava": "^4.2.2",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.18.0",
     "gulp-babel": "^7.0.0",
-    "gulp-eslint": "^4.0.0",
     "gulp-postcss": "^7.0.0",
     "path": "^0.12.7",
     "run-sequence": "^2.2.0"
@@ -57,11 +55,5 @@
   "bugs": {
     "url": "https://github.com/artem-tolstykh/postcss-bike/issues"
   },
-  "homepage": "https://github.com/artem-tolstykh/postcss-bike#readme",
-  "eslintConfig": {
-    "plugins": [
-      "ava"
-    ],
-    "extends": "plugin:ava/recommended"
-  }
+  "homepage": "https://github.com/artem-tolstykh/postcss-bike#readme"
 }
