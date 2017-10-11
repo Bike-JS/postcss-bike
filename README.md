@@ -1,4 +1,4 @@
-# Bike plugin [![Build](https://travis-ci.org/artem-tolstykh/postcss-bike.svg?branch=master)](https://travis-ci.org/artem-tolstykh/postcss-bike)
+# Bike plugin [![Build Status][travis-image]][travis-url] [![NPM][npm]][npm-url]
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
@@ -145,3 +145,8 @@ changing Modifier Value Separator, change default separator `\[$2\]`, which goes
 * [Alex Khyrenko](https://github.com/Satanpit)
 
 ### License [MIT](LICENSE)
+
+[travis-url]: https://travis-ci.org/artem-tolstykh/postcss-bike?branch=master
+[travis-image]: http://img.shields.io/travis/artem-tolstykh/postcss-bike.svg?style=flat-square
+[npm]: https://img.shields.io/npm/v/postcss-bike.svg
+[npm-url]: https://npmjs.com/package/postcss-bike
