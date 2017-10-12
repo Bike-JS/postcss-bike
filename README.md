@@ -1,4 +1,4 @@
-# Bike plugin [![Build Status][travis-image]][travis-url] [![npm version][npm-image]][npm-url]
+# Bike plugin [![Build Status][travis-image]][travis-url] [![npm version][npm-image]][npm-url] [![Deps][deps-image]][deps-url]
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
@@ -138,7 +138,7 @@ type: `RegExp`
 default: `{modifierRegExp: /(\w+)\[(\w+)\]/}`
 
 Allows to set custom regular expressions for modifier params. Where `$1` is Modifier Name and `$2` is Modifier Value. For 
-changing Modifier Value Separator, change default separator `\[$2\]`, which goes before and after $2 (only this `[ ]` symbols).
+changing Modifier Value Separator, change default separator `\[$2\]`, which goes before and after `$2` (only this `[ ]` symbols).
 
 ## Credits
 
@@ -146,7 +146,14 @@ changing Modifier Value Separator, change default separator `\[$2\]`, which goes
 
 ### License [MIT](LICENSE)
 
-[travis-url]: https://travis-ci.org/artem-tolstykh/postcss-bike?branch=master
+[travis-url]: https://travis-ci.org/artem-tolstykh/postcss-bike
 [travis-image]: http://img.shields.io/travis/artem-tolstykh/postcss-bike.svg?style=flat-square
+
 [npm-url]: https://www.npmjs.org/package/postcss-bike
 [npm-image]: http://img.shields.io/npm/v/postcss-bike.svg?style=flat-square
+
+[deps-url]: https://david-dm.org/artem-tolstykh/postcss-bike
+[deps-image]: https://david-dm.org/artem-tolstykh/postcss-bike.svg?style=flat-square
+
+[cover-url]: https://coveralls.io/github/artem-tolstykh/postcss-bike
+[cover-image]: https://img.shields.io/codecov/c/github/artem-tolstykh/postcss-bike.svg?style=flat-square
