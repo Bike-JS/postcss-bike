@@ -146,14 +146,11 @@ changing Modifier Value Separator, change default separator `\[$2\]`, which goes
 
 ### License [MIT](LICENSE)
 
-[travis-url]: https://travis-ci.org/artem-tolstykh/postcss-bike
-[travis-image]: http://img.shields.io/travis/artem-tolstykh/postcss-bike.svg?style=flat-square
+[travis-url]: https://travis-ci.org/Bike-JS/postcss-bike
+[travis-image]: http://img.shields.io/travis/Bike-JS/postcss-bike.svg?style=flat-square
 
 [npm-url]: https://www.npmjs.org/package/postcss-bike
 [npm-image]: http://img.shields.io/npm/v/postcss-bike.svg?style=flat-square
 
 [deps-url]: https://david-dm.org/artem-tolstykh/postcss-bike
 [deps-image]: https://david-dm.org/artem-tolstykh/postcss-bike.svg?style=flat-square
-
-[cover-url]: https://coveralls.io/github/artem-tolstykh/postcss-bike
-[cover-image]: https://img.shields.io/codecov/c/github/artem-tolstykh/postcss-bike.svg?style=flat-square
