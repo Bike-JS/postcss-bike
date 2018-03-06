@@ -25,21 +25,21 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "postcss": "^6.0.12"
+    "postcss": "^6.0.19"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^0.25.0",
     "babel-core": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-ava": "^0.18.0",
-    "gulp-babel": "^7.0.0",
-    "gulp-postcss": "^7.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-postcss": "^7.0.1",
     "path": "^0.12.7",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.1"
   },
   "repository": {
     "type": "git",
