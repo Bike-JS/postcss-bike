@@ -12,7 +12,7 @@
 ## Install
 
 ```
-npm install -S @bikejs/postcss-bike
+npm install -S @bikejs/postcss-bem
 ```
 
 ## Usage
