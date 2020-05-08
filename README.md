@@ -1,19 +1,18 @@
-# Bike plugin [![Build Status][travis-image]][travis-url] [![npm version][npm-image]][npm-url] [![Deps][deps-image]][deps-url]
+# Bike plugin [![npm version][npm-image]][npm-url] [![Deps][deps-image]][deps-url]
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
      src="http://postcss.github.io/postcss/logo-leftp.svg">
 
-> This [PostCSS] plugin based on the idea of [posthtml-bike] by [Alex Khyrenko] and implements transformation of custom At-rules to BEM-like rules
+> This [PostCSS] plugin for implements transformation of custom At-rules to BEM-like rules
 
 [PostCSS]: https://github.com/postcss/postcss
 [posthtml-bike]: https://github.com/Satanpit/posthtml-bike
-[Alex Khyrenko]: https://github.com/Satanpit
 
 ## Install
 
 ```
-npm install --save-dev postcss-bike
+npm install -S @bikejs/postcss-bike
 ```
 
 ## Usage
@@ -140,9 +139,6 @@ default: `{modifierRegExp: /(\w+)\[(\w+)\]/}`
 Allows to set custom regular expressions for modifier params. Where `$1` is Modifier Name and `$2` is Modifier Value. For 
 changing Modifier Value Separator, change default separator `\[$2\]`, which goes before and after `$2` (only this `[ ]` symbols).
 
-## Credits
-
-* [Alex Khyrenko](https://github.com/Satanpit)
 
 ### License [MIT](LICENSE)
 

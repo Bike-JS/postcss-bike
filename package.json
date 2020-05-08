@@ -1,59 +1,37 @@
 {
-  "name": "postcss-bike",
-  "version": "1.0.5",
-  "description": "PostCSS plugin for transformation of custom At-rules to BEM-like rules",
-  "main": "dist/index.js",
-  "directories": {
-    "test": "test"
-  },
+  "name": "@bikejs/postcss-bem",
+  "version": "1.0.0",
+  "description": "PostCSS plugin for BEM methodology",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "scripts": {
-    "test": "gulp"
+    "build": "rm ./dist/* 2> /dev/null & rollup -c",
+    "dev": "rm ./dist/* 2> /dev/null & rollup -c -w"
   },
-  "author": "Artem Tolstykh <arttolstykh@gmail.com>",
-  "contributors": [
-    {
-      "name": "Artem Tolstykh",
-      "email": "arttolstykh@gmail.com"
-    },
-    {
-      "name": "Alex Khyrenko",
-      "email": "alex.hyrenko@gmail.com"
-    }
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "dependencies": {
-    "postcss": "^6.0.19"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "ava": "^0.25.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-ava": "^0.18.0",
-    "gulp-babel": "^7.0.1",
-    "gulp-postcss": "^7.0.1",
-    "path": "^0.12.7",
-    "run-sequence": "^2.2.1"
+    "postcss": "^7.0.29",
+    "@babel/core": "^7.9.6",
+    "rollup-plugin-babel": "^4.4.0",
+    "@babel/preset-react": "^7.9.4",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "rollup": "^2.8.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/artem-tolstykh/postcss-bike.git"
+    "url": "git+https://github.com/Bike-JS/postcss-bike.git"
   },
   "keywords": [
-    "bem",
     "bike",
+    "bem",
     "postcss",
-    "postcss-plugin",
-    "css"
+    "postcss-plugin"
   ],
+  "author": "Alex Khyrenko",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/artem-tolstykh/postcss-bike/issues"
+    "url": "https://github.com/Bike-JS/postcss-bike/issues"
   },
-  "homepage": "https://github.com/artem-tolstykh/postcss-bike#readme"
+  "homepage": "https://github.com/Bike-JS/postcss-bike#readme"
 }

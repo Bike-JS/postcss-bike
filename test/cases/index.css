@@ -1,0 +1,41 @@
+@block input {
+  appearance: none;
+  -webkit-appearance: none;
+
+  @elem label {
+    position: absolute;
+
+    @mod active {
+      top: 50%;
+    }
+  }
+
+  @mod theme[default] {
+    padding: 16px;
+
+    @mod color[red] {
+      background-color: red;
+    }
+
+    @mod color[green] {
+      background-color: green;
+    }
+
+    @mod size[small] {
+      font-size: 12px;
+    }
+  }
+
+  @mod theme[round] {
+    padding: 0;
+
+    @mod size[small] {
+      width: 100px;
+      height: 100px;
+    }
+
+    @elem label {
+      position: relative;
+    }
+  }
+}

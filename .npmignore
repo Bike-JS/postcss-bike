@@ -1,4 +1,6 @@
-node_modules/
-test/
-npm-debug.log
-.gitignore
+node_modules
+.idea
+.vscode
+.DS_Store
+*.log
+*.mo
