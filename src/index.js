@@ -5,7 +5,11 @@ const DEFAULT_OPTIONS = {
   component: 'component',
   element: 'elem',
   modifier: 'mod',
-  modifierRegExp: /([\w\-]+)(?:\[([\w\-]+)\])?/
+  modifierRegExp: /([\w\-]+)(?:\[([\w\-]+)\])?/,
+  blockFormat: '.${block}',
+  elementFormat: '.${block}__${elem}',
+  modifierFormat: '${base}_${key}_${value}',
+  modifierFormatTrue: '${base}_${key}'
 };
 
 export default postcss.plugin('postcss-bike', (options = DEFAULT_OPTIONS) => {
@@ -25,7 +29,7 @@ export default postcss.plugin('postcss-bike', (options = DEFAULT_OPTIONS) => {
 
       switch (node.metadata.type) {
         case options.component:
-          selector = node.metadata.bem();
+          selector = node.metadata.bem(null, null, options);
           break;
         case options.modifier:
           let [, modName, modVal = true] = node.metadata.name.match(options.modifierRegExp);
@@ -33,18 +37,18 @@ export default postcss.plugin('postcss-bike', (options = DEFAULT_OPTIONS) => {
           node.metadata.mods = { [modName]: modVal };
 
           if (node.parent.metadata.type === options.element) {
-            selector = node.metadata.bem(node.parent.metadata.name, { [modName]: modVal });
+            selector = node.metadata.bem(node.parent.metadata.name, { [modName]: modVal }, options);
           } else if (node.parent.metadata.type === options.modifier) {
-            selector = node.metadata.bem({ ...node.parent.metadata.mods, [modName]: modVal });
+            selector = node.metadata.bem({ ...node.parent.metadata.mods, [modName]: modVal }, null, options);
           } else {
-            selector = node.metadata.bem({ [modName]: modVal });
+            selector = node.metadata.bem({ [modName]: modVal }, null, options);
           }
           break;
         case options.element:
           if (node.parent.metadata.type === options.modifier) {
-            selector = [node.parent.selector, node.metadata.bem(node.metadata.name)].join(' ');
+            selector = [node.parent.selector, node.metadata.bem(node.metadata.name, null, options)].join(' ');
           } else {
-            selector = node.metadata.bem(node.metadata.name);
+            selector = node.metadata.bem(node.metadata.name, null, options);
           }
           break;
       }
