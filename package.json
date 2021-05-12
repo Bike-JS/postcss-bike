@@ -10,7 +10,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "postcss": "^7.0.29",
+    "postcss": "^8.2.10",
     "@babel/core": "^7.9.6",
     "rollup-plugin-babel": "^4.4.0",
     "@babel/preset-react": "^7.9.4",
