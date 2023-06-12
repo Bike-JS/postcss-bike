@@ -49,6 +49,12 @@ postcss([bike()]).process(css).then((res) => console.log(output.css));
     }
   }
 
+  @mod theme[foo|bar] {
+    @elem header {
+      position: absolute;
+    }
+  }
+  
   @elem header {
     flex: 0 0 50px;
     background-color: #fff;
@@ -89,6 +95,10 @@ Transformed to:
 .example_theme_dark .example__footer {
   background-color: #1b1b1b;
   color: #fff;
+}
+.example_theme_foo .example__header,
+.example_theme_bar .example__header {
+  position: absolute;
 }
 .example__header {
   flex: 0 0 50px;
@@ -134,10 +144,11 @@ Allows to set custom name for modifier `@rule`.
 ### `modifierRegExp`
 
 type: `RegExp`  
-default: `{modifierRegExp: /(\w+)\[(\w+)\]/}`
+default: `{modifierRegExp: /(\w+)\[(\w+)| \]/}`
 
 Allows to set custom regular expressions for modifier params. Where `$1` is Modifier Name and `$2` is Modifier Value. For 
 changing Modifier Value Separator, change default separator `\[$2\]`, which goes before and after `$2` (only this `[ ]` symbols).
+Multiple values (used as 'OR') can be separated with a vertical pipe (`|`).
 
 
 ### License [MIT](LICENSE)

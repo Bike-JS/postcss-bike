@@ -5,7 +5,7 @@ const DEFAULT_OPTIONS = {
   component: 'component',
   element: 'elem',
   modifier: 'mod',
-  modifierRegExp: /([\w\-]+)(?:\[([\w\-]+)\])?/
+  modifierRegExp: /([\w\-]+)(?:\[([\w\-| ]+)\])?/
 };
 
 export default postcss.plugin('postcss-bike', (options = DEFAULT_OPTIONS) => {
@@ -21,37 +21,46 @@ export default postcss.plugin('postcss-bike', (options = DEFAULT_OPTIONS) => {
         node.metadata = { bem: BEM(node.params), type: options.component };
       }
 
-      let selector = '';
+      let selectors = [];
 
-      switch (node.metadata.type) {
-        case options.component:
-          selector = node.metadata.bem();
-          break;
-        case options.modifier:
-          let [, modName, modVal = true] = node.metadata.name.match(options.modifierRegExp);
+      node.metadata.names = node.metadata.name ? node.metadata.name.split(',').map(val => val.trim()) : [''];
+      node.metadata.names.forEach(metaName => {
+        switch (node.metadata.type) {
+          case options.component:
+            selectors.push(node.metadata.bem());
+            break;
+          case options.modifier:
+            let [, modName, modVals = true] = metaName.match(options.modifierRegExp);
 
-          node.metadata.mods = { [modName]: modVal };
+            // Handle possible multiple comma-delimited modifier values.
+            modVals = typeof modVals === 'string' ? modVals.split('|').map(val => val.trim()) : [modVals];
+            modVals.forEach(modVal => {
+              node.metadata.mods = { [modName]: modVal };
 
-          if (node.parent.metadata.type === options.element) {
-            selector = node.metadata.bem(node.parent.metadata.name, { [modName]: modVal });
-          } else if (node.parent.metadata.type === options.modifier) {
-            selector = node.metadata.bem({ ...node.parent.metadata.mods, [modName]: modVal });
-          } else {
-            selector = node.metadata.bem({ [modName]: modVal });
-          }
-          break;
-        case options.element:
-          if (node.parent.metadata.type === options.modifier) {
-            selector = [node.parent.selector, node.metadata.bem(node.metadata.name)].join(' ');
-          } else {
-            selector = node.metadata.bem(node.metadata.name);
-          }
-          break;
-      }
+              if (node.parent.metadata.type === options.element) {
+                selectors.push(node.metadata.bem(node.parent.metadata.name, { [modName]: modVal }));
+              } else if (node.parent.metadata.type === options.modifier) {
+                selectors.push(node.metadata.bem({ ...node.parent.metadata.mods, [modName]: modVal }));
+              } else {
+                selectors.push(node.metadata.bem({ [modName]: modVal }));
+              }
+            });
+            break;
+          case options.element:
+            if (node.parent.metadata.type === options.modifier) {
+              node.parent.selectors.forEach(parentSelector => {
+                selectors.push([parentSelector, node.metadata.bem(metaName)].join(' '));
+              });
+            } else {
+              selectors.push(node.metadata.bem(metaName));
+            }
+            break;
+        }
+      });
 
       const rule = postcss.rule({
         raws: { semicolon: true },
-        selector: selector,
+        selectors: selectors,
         source: node.source,
         metadata: node.metadata
       });
