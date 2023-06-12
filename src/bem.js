@@ -5,22 +5,29 @@ export const BEM = (block) => (elem, mods) => {
     return base;
   }
 
+  // Handle multiple bases e.g. comma-separated elements.
+  let bases = [base];
+
   if (typeof elem === 'object') {
     mods = elem;
     elem = '';
   }
 
   if (elem !== '') {
-    base = `.${block}__${elem}`;
+    bases = elem.split(',').map(elem => {
+      return `.${block}__${elem.trim()}`;
+    });
   }
 
-  return (mods ? Object.entries(mods).reduce((target, [key, value]) => {
-    if (!value) {
+  return bases.map(base => {
+    return mods ? Object.entries(mods).reduce((target, [key, value]) => {
+      if (!value) {
+        return target;
+      }
+
+      target += `${value === true ? (`${base}_${key}`) : (`${base}_${key}_${value}`)}`;
+
       return target;
-    }
-
-    target += `${value === true ? (`${base}_${key}`) : (`${base}_${key}_${value}`)}`;
-
-    return target;
-  }, '') : base);
+    }, '') : base;
+  }).join(', ');
 };
